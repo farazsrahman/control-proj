@@ -10,13 +10,13 @@ Editing the latex:
 
 Pushing the latex:
 ```shell
-git subtree push --prefix=overleaf overleaf master
+git subtree push --prefix=overleaf overleaf main
 ```
 - This will push the main repos changes as commits to the subtree
 
 Pulling the latex:
 ```shell
-git subtree pull --prefix=overleaf overleaf master --squash
+git subtree pull --prefix=overleaf overleaf main --squash
 ```
 - This will pull all changes to the overleaf down as one *single* commit
 - Merge conflicts may need to be resolved - best to do this before editing.
@@ -24,5 +24,5 @@ git subtree pull --prefix=overleaf overleaf master --squash
 
 To do this all again:
 ```sh
-git subtree add --prefix=overleaf <external-repo-URL> master --squash
+git subtree add --prefix=overleaf <external-repo-URL> main --squash
 ```

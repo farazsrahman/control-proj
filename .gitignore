@@ -1,4 +1,5 @@
 .obsidian/
+.env
 .claude/
 .cache/
 slurm/

@@ -1,5 +1,6 @@
 \documentclass{article}
 \usepackage{graphicx} % Required for inserting images
+\usepackage{natbib}
 
 \title{Dexterous Control: A Review}
 \author{farazr }
@@ -18,16 +19,38 @@ This note is intended to be general review of the current progress in building l
 Here is a non-exhaustive list of specific questions that I think are going to be important to study
 \begin{itemize}
     \item What are elementary and general purpose semantic action spaces that we should expect as \emph{input} into a dexterous manipulator? ``Open/close"?, Language?, Video?
+    \item How should a dexterous manipulator sense the world? What is optimal? What is cost-effective?
     \item What should the low-level control output of a manipulator to physical hardware be?
     \item What is a list of all the sub-problems required to build a general purpose dex. manipulator? What can be built / solved entirely in simulation?
 \end{itemize}
 
-\noindent In order to understand what the state of the art is and where the current challenges are, we can compile a list of recent / seminal projects as representations of current methods.
-
-From earlier reading, here is a list of relevant work.
+\noindent In order to understand what the state of the art is and where the current challenges are, we can compile a list of recent / seminal projects as representations of current methods. From earlier reading, here is a list of relevant work.
 \begin{itemize}
-    \item Eureka + DrEureka (Ma et al.)
-    \item Learning Dexterous In-Hand Manipulation (OpenAI)
+    \item Learning Dexterous In-Hand Manipulation + Solving Rubik's Cube with a Robot Hand \citep{andrychowicz2020learning, openai2019rubiks}
+    \item Visual Dexterity \citep{chen2023visual}
+    \item Eureka + DrEureka \citep{ma2024eureka,ma2024dreureka}
 \end{itemize}
+
+\noindent These papers are what I will refer to as the ``seminal'' works from 2023-24. They all use large-scale simulation to train a simple PPO policy. The focus of the work is 1) establishing the sensing suite for the policy and 2) building robust sim2real pipelines (via Domain Randomization and such). Importantly, all of these policies learn what is essentially a single-task with a variety of setups.
+
+
+More recent work in this area seems to have focused on two directions: 1) Improving sensor suites and incorporating said suites into policies 2) Leveraging human video to pre-train manipulation policies. Some papers that I recently read include:
+\begin{itemize}
+    \item Do as I Do \citep{paliwal2026doasido}
+    \item Beyond Binary \citep{pan2026beyondbinary}
+    \item Dexterity from Touch \citep{guzey2023dexterity}
+\end{itemize}
+
+\noindent I think that Beyond Binary is a pretty well presented paper that highlights the nuance of sensor design in this setting: too much information and policies become hard to lear, too little information and the task becomes too challenging. This aligns with the 2nd question above. 
+
+One more comment, I realize that the set of ``benchmark tasks'' for dexterous control (real or sim) is much more loosely defined than for bi-manual manipulation. This is probably in part because no ``$\pi$-like'' company has set a benchmark for everyone to measure themselves agains, but also because it's not clear what the purpose of dexterous control is to be. At a very high level, we should ask oursleves: \emph{what is the purpose of a dexterous manipulator?}. Here is a list of some high-level goals:
+\begin{itemize}
+    \item Full mobility in the wrist, so that bi-manual policies don't need to re-orient arms just to make a specific grasp. YAM arms have this, but the entire wrist assembly is incredibly bulky.
+\end{itemize}
+
+% References 
+\newpage
+\bibliographystyle{plainnat}
+\bibliography{references}
 
 \end{document}

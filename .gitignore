@@ -7,8 +7,10 @@ wandb/
 ckpts/
 media/
 *.pt
+*.pth
 control/data
 control/deps
+overleaf/latex_out/
 
 # Dev tools
 Makefile

@@ -1,0 +1,43 @@
+# Secrets
+.env
+.env.*
+
+# Python envs / build
+.venv/
+build/
+dist/
+
+# Pretrained weights + checkpoints
+.pretrained_checkpoints/
+checkpoints/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.onnx
+
+# Training / sim outputs
+logs/
+runs/
+outputs/
+wandb/
+videos/
+*.mp4
+*.gif
+
+# Isaac Sim / Isaac Lab caches
+.nv/
+kit/
+*.usd.bak
+*.thumbs/
+
+# Third-party vendored code (see CLAUDE.md)
+deps/
+
+# Local data
+data/
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/

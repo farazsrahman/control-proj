@@ -1,0 +1,56 @@
+[project]
+name = "control"
+version = "0.1.0"
+description = "Dexterous manipulation experiments (Isaac Lab)"
+requires-python = "==3.11.*"
+dependencies = [
+    "isaacsim[all,extscache]==5.1.0",
+    "torch==2.7.0",
+    "torchvision==0.22.0",
+    "isaaclab",
+    "isaaclab-assets",
+    "isaaclab-tasks",
+    "isaaclab-rl[rl-games,rsl-rl]",
+    "ipykernel",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+# the project itself installs (editable) as two top-level packages, importable from any notebook dir
+packages = ["api", "utils"]
+
+[tool.uv]
+# isaacsim's sub-packages live on pypi.nvidia.com; let uv pick the best match across indexes.
+index-strategy = "unsafe-best-match"
+# isaaclab pins some packages (e.g. starlette, pillow) that conflict with isaacsim's pins
+override-dependencies = ["starlette==0.49.1", "pillow==11.3.0"]
+
+[[tool.uv.index]]
+name = "nvidia"
+url = "https://pypi.nvidia.com"
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu128" }
+torchvision = { index = "pytorch-cu128" }
+isaaclab = { path = "deps/IsaacLab/source/isaaclab", editable = true }
+isaaclab-assets = { path = "deps/IsaacLab/source/isaaclab_assets", editable = true }
+isaaclab-tasks = { path = "deps/IsaacLab/source/isaaclab_tasks", editable = true }
+isaaclab-rl = { path = "deps/IsaacLab/source/isaaclab_rl", editable = true }
+
+[tool.uv.extra-build-dependencies]
+# flatdict 4.0.1 (pinned by isaaclab) imports pkg_resources at build time
+flatdict = ["setuptools<81"]
+
+[dependency-groups]
+dev = [
+    # 4.4+ needs packaging>=24 (packaging.utils.InvalidName); isaaclab-rl pins packaging<24
+    "jupyterlab<4.4",
+]

@@ -11,6 +11,7 @@ dependencies = [
     "isaaclab-assets",
     "isaaclab-tasks",
     "isaaclab-rl[rl-games,rsl-rl]",
+    "mani-skill",
     "ipykernel",
 ]
 

@@ -1,8 +1,8 @@
 """The one place notebooks and scripts touch Isaac Sim / Isaac Lab startup.
 
-    from api import sim
-    app = sim.launch(cameras=True)
-    env = sim.make_env("Isaac-Cartpole-Direct-v0", num_envs=4096, render=True)
+    from api import isaac
+    app = isaac.launch(cameras=True)
+    env = isaac.make_env("Isaac-Cartpole-Direct-v0", num_envs=4096, render=True)
 """
 
 from __future__ import annotations
@@ -69,7 +69,7 @@ def make_env(
     """
     global _env
     if _app is None:
-        raise RuntimeError("Call api.sim.launch() before make_env().")
+        raise RuntimeError("Call api.isaac.launch() before make_env().")
     if _env is not None:
         raise RuntimeError(
             "An Isaac Lab env already exists in this process, and creating a second one hangs. "

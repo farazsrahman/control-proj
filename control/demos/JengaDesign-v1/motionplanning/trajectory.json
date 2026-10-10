@@ -1,0 +1,28 @@
+{
+  "env_info": {
+    "env_id": "JengaDesign-v1",
+    "env_kwargs": {
+      "num_envs": 1,
+      "render_mode": null,
+      "obs_mode": "none",
+      "control_mode": "pd_joint_pos"
+    },
+    "max_episode_steps": 2000
+  },
+  "commit_info": null,
+  "episodes": [
+    {
+      "episode_id": 0,
+      "episode_seed": 0,
+      "control_mode": "pd_joint_pos",
+      "elapsed_steps": 1910,
+      "reset_kwargs": {
+        "options": null,
+        "seed": 0
+      },
+      "success": true
+    }
+  ],
+  "source_type": "motionplanning",
+  "source_desc": "JengaDesign-v1 scripted solver"
+}

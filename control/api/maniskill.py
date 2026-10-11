@@ -36,6 +36,7 @@ def make_env(task: str, num_envs: int = 1, render: bool = False, **kwargs) -> gy
 
     import api.maniskill_tasks  # noqa: F401  (registers our custom tasks, e.g. StackThree-v1)
     import api.jenga  # noqa: F401  (registers JengaDesign-v1)
+    import api.jenga_allegro  # noqa: F401  (registers JengaAllegro-v1)
 
     return gym.make(task, num_envs=num_envs, render_mode="rgb_array" if render else None, **kwargs)
 

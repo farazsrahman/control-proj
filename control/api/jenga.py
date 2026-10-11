@@ -219,6 +219,7 @@ class JengaDesignEnv(BaseEnv):
     SUPPORTED_ROBOTS = ["panda_wristcam", "panda", "fetch"]
     SUPPORTED_REWARD_MODES = ["sparse", "dense", "normalized_dense", "none"]
     agent: Union[Panda, Fetch]
+    TABLE_SCENE_BUILDER = TableSceneBuilder  # subclasses with other embodiments swap in a builder that knows their robot
 
     def __init__(
         self, *args, design=None, num_spare_blocks: int = NUM_SPARE_BLOCKS, scatter: bool = True,
@@ -249,7 +250,7 @@ class JengaDesignEnv(BaseEnv):
         super()._load_agent(options, sapien.Pose(p=ROBOT_BASE))
 
     def _load_scene(self, options: dict):
-        self.table_scene = TableSceneBuilder(env=self, robot_init_qpos_noise=self.robot_init_qpos_noise)
+        self.table_scene = self.TABLE_SCENE_BUILDER(env=self, robot_init_qpos_noise=self.robot_init_qpos_noise)
         self.table_scene.build()
         self._build_grid_marker()
         self.blocks = [

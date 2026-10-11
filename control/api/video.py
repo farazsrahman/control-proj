@@ -8,12 +8,21 @@ import imageio
 from IPython.display import Video
 
 
-def show(frames, fps: float, width: int = 640) -> Video:
-    """Encode RGB frames to mp4 via a temp file and return an embedded IPython Video."""
+def encode_mp4(frames, fps: float) -> bytes:
+    """Encode RGB frames to mp4 bytes via a temp file (small enough to cache, unlike the raw frames)."""
     with tempfile.NamedTemporaryFile(suffix=".mp4") as f:
         imageio.mimwrite(f.name, frames, fps=fps)
-        data = open(f.name, "rb").read()
+        return open(f.name, "rb").read()
+
+
+def video_from_bytes(data: bytes, width: int = 640) -> Video:
+    """Embed mp4 bytes as an IPython Video."""
     return Video(data=data, embed=True, mimetype="video/mp4", width=width)
+
+
+def show(frames, fps: float, width: int = 640) -> Video:
+    """Encode RGB frames to mp4 via a temp file and return an embedded IPython Video."""
+    return video_from_bytes(encode_mp4(frames, fps), width)
 
 
 def draw_tracks(frames, uv, visible, colors, trail: int = 10, radius: int = 3) -> list:

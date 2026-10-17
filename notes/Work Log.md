@@ -39,5 +39,14 @@ This should also be paired with the ability to use *flexible* embodiments. In ge
 
 I need to be a bit smarter about budgeting for this project as well. If I am not smart, I could end up spending a lot of personal money without need. Also, if I am smart I could get a good result by spending.
 - [[Budgeting]]
-- 
+
+I like that my repo is so flexible with compute instances.
+
+The Jenga floating Claude generated demonstration is strong, but it is basically a programmatic solver as opposed to a direct output from Claude.
+
+The gripper is much easier to do. Worth trying with a Chat GPT harness: worked decently on the gripper embodiment
+
+The Jenga environment has been quite useful. It would be good to generalize it. Or enable more various general tasks. 
+
+
 

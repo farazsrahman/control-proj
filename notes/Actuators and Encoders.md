@@ -1,0 +1,3 @@
+____
+
+Motors can use encoders to measure the position of the rotor. In non-direct drive motors (most), the encoder can be placed before or after the transmission. Intuitively, if the encoder is placed before the transmission, we get accurate signal of how far a motor turns from a torque command. On the other hand if the encoder is on the otherside we get better information about the actual shaft rotation and how much a external torque turns the rotor. 
